@@ -1,0 +1,76 @@
+---
+---
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en-US' }}">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <title>Luke Arcamo</title>
+        <link rel="stylesheet" href="/assets/css/index.css">
+    </head>
+    <body>
+        <header>
+            {% include nav.html %}
+            <h1 class="glitch" data-text="Luke Arcamo">Luke Arcamo</h1>
+            <ul class="subheading">
+                <li><a class="fancy-link from-right" href="/art">Art</a></li>
+                <li><a class="fancy-link from-right" href="https://github.com/lukearcamo">Github</a></li>
+                <li><a class="fancy-link from-right" href="">Engineering</a></li>
+                <li><a class="fancy-link from-right" href="">Reading</a></li>
+            </ul>
+        </header>
+        
+        <article>
+            <section class="about">
+                <div>
+                    <h2>About</h2>
+                    {% assign year_fraction = "now" | date: "%j" | divided_by: 365 %}
+                    Hello! My name is Luke, and I am a {{ "now" | date: "%y" | plus: year_fraction | minus: 4.712 | round }} year old engineering student from Toronto.
+                    I created this website to showcase the projects I have worked on throughout my life, personal or professional, spanning art and science.
+                </div>
+            </section>
+
+            <section class="art">
+                <div>
+                    <h2><a class="fancy-link from-left" href="">Art</a></h2>
+                    <p>Stories told in a realistic or impressionistic style, focusing on a painterly style in spite of a digital medium.</p>
+                    <p>Primary inspirations include Johannes Vermeer, the Group of Seven, Edward Hopper, John Singer Sargent, and more.</p>
+                    <p>Tools used: Sketchbook app, iPad, and relatively recently, an Apple Pencil.</p>
+                </div>
+                <div>
+                    <img src="/assets/images/placeholder.png">
+                </div>
+            </section>
+        
+            <section class="code">
+                <div>
+                    <h2><a class="fancy-link from-left" href="https://github.com/lukearcamo?tab=repositories">Code</a></h2>
+                    <p>Contains mainly unfinished projects, with more unpublished experiments beyond GitHub.</p>
+                    <p>Key interests include web design and 3D graphics using WebGL/OpenGL (raytracing/raymarching, shaders, procedural generation).</p> 
+                    <p>Familiar languages: Python, JS/HTML/CSS, C++, GLSL, and MATLAB.</p>
+                </div>
+                <div>
+                    Column 2
+                </div>
+            </section>
+        
+            <section class="articles">
+                <div>
+                    <h2><a class="fancy-link from-left" href="">Articles</a></h2>
+                    Coding discussions, book reviews, and engineering textbook notes.
+                    <h3><a class="fancy-link from-left" href="/articles_categories">Posts by categories →</a></h3>
+                    <h3><a class="fancy-link from-left" href="">Posts by tags →</a></h3>
+                </div>
+                <div>
+                    {% for post in site.posts limit:2 %}
+                        <h3><a class="fancy-link from-left" href="{{ post.url }}">{{ post.title }} — {{ post.date | date_to_string }}</a></h3>
+                        {{ post.excerpt }}
+                    {% endfor %}
+                    <h3><a class="fancy-link from-left" href="/articles_latest">Older posts →</a></h3>
+                </div>
+            </section>
+        </article>
+
+        {% include footer.html %}
+    </body>
+</html>
