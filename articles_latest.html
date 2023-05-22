@@ -1,0 +1,11 @@
+---
+layout: posts_list
+title: "Articles: Latest"
+---
+{% for post in site.posts %}
+    <section class="art">
+        <h2><a class="fancy-link from-left" href="{{ post.url }}">{{ post.title }}</a></h2>
+        <h3>By {{ post.author }} — {{ post.date | date_to_string }}</h3>
+        {{ post.excerpt }}
+    </section>
+{% endfor %}

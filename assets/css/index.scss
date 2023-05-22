@@ -1,0 +1,128 @@
+---
+---
+@import "base";
+@import "glitch";
+
+header {
+    box-sizing: border-box;
+    background-color: $off-white;
+    height: 100vh;
+    position: relative;
+
+    padding: 0;
+    margin: 0;
+
+    h1 {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        margin: 0 0 -0.1em -0.06em;
+        line-height: 0.85em;
+
+        font-size: 20vw;
+        font-family: Poppins;
+
+        animation: {
+            name: slide-in-left;
+            // delay: 0.5s;
+            duration: 2s;
+            timing-function: ease-in-out;
+            fill-mode: both;
+        }
+    }
+    .subheading {
+        position: absolute;
+        top: 20%;
+        right: 0;
+
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+
+        font-weight: bold;
+        font-size: 60px;
+        font-family: Times;
+        text-align: right;
+        list-style-type: none;
+
+        @for $i from 1 through 4 {
+            li:nth-child(#{$i}) {
+                animation: {
+                    name: slide-in-right;
+                    delay: 1s + 0.25s * $i;
+                    duration: 1s;
+                    timing-function: ease-out;
+                    fill-mode: both;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 800px) {
+        h1 {
+            font-size: 23vw;
+        }
+        .subheading {
+            top: 30%;
+            font-size: 40px;
+        }
+    }
+}
+
+section { // maybe create a two-column flexbox class along with article.css .article?
+    width: 100%;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    padding: 5%;
+    box-sizing: border-box;
+
+    font-family: Garamond;
+    font-size: 20px;
+
+    h2 {
+        padding: 0 0 0.1em 0;
+        margin: 0 0 0.3em 0;
+        border-bottom: 2px solid currentColor;
+    }
+    div {
+        flex-grow: 1;
+        flex-shrink: 1;
+        width: 400px;
+
+        padding: 20px;
+        box-sizing: border-box;
+
+        img {
+            width: 100%;
+            display: block;
+        }
+    }
+    &:nth-child(odd) { flex-direction: row-reverse; }
+    &:nth-child(even) { flex-direction: row; }
+}
+
+.about {
+    padding: 5% 20%;
+
+    color: $off-white;
+    background-color: black;
+}
+.art {
+    color: black;
+    background-color: $dark-white;
+}
+.code {
+    color: black;
+    font-family: "Courier New";
+    h2 { font-family: "Courier New"; }
+
+    background-color: $off-white;
+}
+.articles {
+    color: black;
+    background-color: $dark-white;
+}

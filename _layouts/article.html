@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en-US' }}">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <title>{{ page.title }} - Luke Arcamo</title>
+        <link rel="stylesheet" href="/assets/css/article.css">
+
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    </head>
+    <body>
+        {% assign delimiter = "%3C%21--split--%3E" | url_decode %}
+        {% assign sections = content | split: delimiter %}
+
+        <header style="background-color: {{ page.color }}">
+            {% include nav.html %}
+            <h1>{{ page.title }}</h1>
+            <h3>By {{ page.author }} — {{ page.date | date_to_string }}</h3>
+            {{ sections[0] }}
+        </header>
+
+        <article>
+            <aside>
+                <h3>Contents</h3>
+                {{ sections[1] }}
+            </aside>
+            <section>
+                {{ sections[2] }}
+            </section>
+        </article>
+
+        {% include footer.html %}
+    </body>
+</html>

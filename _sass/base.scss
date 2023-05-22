@@ -1,0 +1,329 @@
+// @import url(https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap);
+// @import url(https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400&family=Roboto+Slab&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap);
+
+$linkColor: #8080ff;
+$visitedLinkColor: #ee80ff;
+
+$black: #0D1116;
+$dark: #26303C; // 3180a5
+$blue: #0A9396;
+$dark-white: #d1bb9f;
+$off-white: #fae9d4;
+$gold: #EE9B00;
+$orange: #BB3E03;
+$red: #841A00;
+
+
+@keyframes slide-in-left {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(0); }
+}
+@keyframes slide-in-right {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}
+@keyframes slide-in-top {
+    from { transform: translateY(-200%); }
+    to { transform: translateY(0); }
+}
+
+html, body {
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+// ================================================================================================================================
+// Global text styles
+// ================================================================================================================================
+
+h1 {
+    margin: 0;
+    box-sizing: border-box;
+
+    font-size: 80px;
+    font-family: Poppins;
+    line-height: 1em;
+
+    word-wrap: break-word;
+    hyphens: auto;
+
+    // border: 1px dotted red;
+}
+h2 {
+    margin: 1em 0 0 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+    font-size: 40px;
+    font-family: Poppins;
+    line-height: 1em;
+
+    // border: 1px dotted green;
+}
+h3 {
+    margin: 1em 0 0 0;
+    box-sizing: border-box;
+
+    font-size: 25px;
+    font-family: Poppins;
+    line-height: 1em;
+
+    // border: 1px dotted blue;
+}
+p, ul, ol {
+    font-size: 20px;
+    // font-family: Garamond;
+    font-family: Times;
+    line-height: 1.5em;
+
+    // border: 1px dotted yellow;
+}
+@media (max-width: 800px) {
+    h1 { font-size: 50px; }
+    h2 { font-size: 30px; }
+    h3 { font-size: 20px; }
+    p, ul, ol { font-size: 16px; }
+}
+
+// ================================================================================================================================
+
+.fade {
+    width: 100%;
+    height: 100%;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    background-color: black;
+
+    pointer-events: none;
+
+    @keyframes fade-out {
+        from { opacity: 1 }
+        to { opacity: 0 }
+    }
+    @keyframes grow {
+        from { transform: translate(-50%, -50%) scale(0) }
+        to { transform: translate(-50%, -50%) scale(250%) }
+    }
+    animation: {
+        name: fade-out;
+        duration: 1s;
+        timing-function: linear;
+        fill-mode: both;
+    }
+}
+
+.fancy-link {
+    display: inline-block; // or block
+    box-sizing: border-box;
+
+    text-decoration: none;
+    line-height: 1.5em;
+
+    color: currentColor;
+    // border: 1px solid red;
+
+    background: linear-gradient(currentColor 0%, currentColor 100%);
+    background-repeat: no-repeat;
+    background-size: 0 8px;
+    background-origin: content-box;
+
+    cursor: pointer;
+
+    transition: background-size 0.25s;
+    &:hover, &:active {
+        background-size: 100% 8px;
+    }
+    &.from-left {
+        // left: 0;
+        background-position: 0% 100%;
+    }
+    &.from-right {
+        // right: 0;
+        background-position: 100% 100%;
+    }
+
+}
+
+// ================================================================================================================================
+// Navbar, plus other special lists
+// ================================================================================================================================
+
+.logo, .hamburger {
+    display: block;
+    position: absolute;
+    top: 0;
+
+    padding: 15px;
+    margin: 0;
+
+    font-size: 30px;
+
+    cursor: pointer;
+
+    animation: {
+        name: slide-in-top;
+        duration: 2s;
+        fill-mode: both;
+    }
+
+    img, svg {
+        height: 1.5em;
+        display: block;
+        margin: 0;
+
+        transition: transform 0.1s;
+        &:hover { transform: scale(1.2); }
+    }
+}
+.logo { left: 0; }
+.hamburger {
+    right: 0;
+    text-align: center;
+}
+.modal {
+    width: 70vmin;
+    height: 70vmin;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    border-bottom-left-radius: 100%;
+
+    background-color: $gold;
+
+    transform: scale(0);
+    transform-origin: top right;
+    transition: transform 0.5s;
+
+    &.opened { transform: scale(1); }
+    &.closed { transform: scale(0); transition-delay: 0.25s; }
+}
+@media (min-width: 800px) { // note: min-width
+    .hamburger, .modal {
+        display: none;
+    }
+}
+
+.navbar, .contact-info {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+    font-size: 30px;
+
+    display: flex;
+    flex-flow: row wrap;
+    align-content: end;
+    justify-content: right;
+    align-items: flex-end;
+
+    li {
+        display: block;
+        width: fit-content;
+
+        padding: 0 0.5em;
+        border-left: 2px solid currentColor;
+        &:first-of-type { border: none; }
+        
+        font-weight: bold;
+    }
+    @media (max-width: 800px) {
+        flex-flow: column wrap;
+        li { border: none; }
+    }
+}
+.navbar {
+    position: absolute;
+    top: 10px;
+    right: 0;
+
+    animation: {
+        name: slide-in-top;
+        duration: 2s;
+        fill-mode: both;
+    }
+    
+    @media (max-width: 800px) {
+        top: 2em;
+
+        li {
+            transform: translate(100%);
+            $num-items: 4;
+            @for $i from 1 through $num-items {
+                &.opened:nth-child(#{$i}) {
+                    transform: translate(0);
+                    transition: transform 0.5s ease 0.05s * $i;
+                }
+                &.closed:nth-child(#{$i}) {
+                    transform: translate(100%);
+                    transition: transform 0.5s ease 0.05s * ($num-items - 1 - $i);
+                }
+            }
+        }
+    }
+}
+
+// ================================================================================================================================
+
+footer {
+    position: relative;
+
+    padding: 5% 10px 10px 10px;
+    border-top: 2px solid currentColor;
+    box-sizing: border-box;
+
+    text-align: right;
+
+    background-color: $off-white;
+    
+    .copyright {        
+        text-align: left;
+
+        font-weight: bold;
+        font-size: 16px;
+        font-family: Poppins;
+    }
+    @media (max-width: 800px) {
+        .copyright { text-align: right; }
+    }
+}
+
+// Credit: https://gist.github.com/patik/89ee6092c72a9e39950445c01598517a
+// @mixin numbered-headings {
+//     counter-reset: h1counter h2counter h3counter h4counter h5counter h6counter;
+
+//     h1 { counter-reset: h2counter; }
+//     h2 { counter-reset: h3counter; }
+//     h3 { counter-reset: h4counter; }
+//     h4 { counter-reset: h5counter; }
+//     h5 { counter-reset: h6counter; }
+//     // h6 {}
+
+//     h2:before {
+//         counter-increment: h2counter;
+//         content: counter(h2counter) ".\0000a0\0000a0";
+//     }
+//     h3:before {
+//         counter-increment: h3counter;
+//         content: counter(h2counter) "." counter(h3counter) ".\0000a0\0000a0";
+//     }
+//     h4:before {
+//         counter-increment: h4counter;
+//         content: counter(h2counter) "." counter(h3counter) "." counter(h4counter) ".\0000a0\0000a0";
+//     }
+//     h5:before {
+//         counter-increment: h5counter;
+//         content: counter(h2counter) "." counter(h3counter) "." counter(h4counter) "." counter(h5counter) ".\0000a0\0000a0";
+//     }
+//     h6:before {
+//         counter-increment: h6counter;
+//         content: counter(h2counter) "." counter(h3counter) "." counter(h4counter) "." counter(h5counter) "." counter(h6counter) ".\0000a0\0000a0";
+//     }
+// }

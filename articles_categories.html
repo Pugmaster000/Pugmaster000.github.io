@@ -1,0 +1,14 @@
+---
+layout: articles_list
+title: "Articles: Categories"
+---
+{% for category in site.categories %}
+    <h1>{{ category[0] | capitalize }}</h1>
+    {% for post in category[1] %}
+        <section class="art">
+            <h2><a class="fancy-link from-left" href="{{ post.url }}">{{ post.title }}</a></h2>
+            <h3>By {{ post.author }} — {{ post.date | date_to_string }}</h3>
+            {{ post.excerpt }}
+        </section>
+    {% endfor %}
+{% endfor %}

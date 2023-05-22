@@ -1,0 +1,151 @@
+---
+---
+@import "base";
+
+header {
+    padding: 0 10%;
+    box-sizing: border-box;
+
+    background-color: black;
+}
+nav {
+    padding-bottom: 20px;
+
+    background-color: $off-white;
+}
+
+article {
+    padding: 20px 10%;
+
+    display: flex;
+    flex-flow: column wrap;
+    align-content: center;
+    justify-content: center;
+
+    background-color: black;
+
+    a {
+        width: 100%;
+
+        display: block;
+        position: relative;
+
+        margin: 20px;
+        box-sizing: border-box;
+        z-index: 0;
+        
+        // color: black;
+        color: $off-white;
+        text-decoration: none;
+
+        background-color: transparent;
+    
+        transition: transform 0.25s;
+    
+        h2 {
+            height: 1.25em;
+
+            position: absolute;
+            top: 0;
+
+            padding: 0;
+            margin: 0;
+            z-index: 1;
+
+            font-size: 12vw;
+            font-family: Poppins;
+
+            @extend .fancy-link;
+
+            &:hover, &:active {
+                background-size: 100% 8px;
+            }
+        }
+
+        .img-container {
+            padding: 0.5em 0;
+            margin-top: 1em;
+            box-sizing: border-box;
+
+            z-index: -1;
+
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: center;
+
+            font-size: 12vw; // Should be same as h2 above
+
+            .test-img {
+                width: 200px;
+                height: 300px;
+
+                margin: 10px;
+
+                flex-grow: 1;
+
+                background-color: $off-white;
+            }
+        }
+
+        &:nth-child(odd) {
+            h2 {
+                left: 0;
+                transform: rotate(-5deg);
+                @extend .from-left
+            }
+            .img-container {
+                margin-left: 20%;
+                @media (max-width: 800px) { margin-left: 0; }
+            }
+        }
+        &:nth-child(even) {
+            h2 {
+                right: 0;
+                transform: rotate(5deg);
+                @extend .from-right
+            }
+            .img-container {
+                margin-right: 20%;
+                @media (max-width: 800px) { margin-right: 0; }
+            }
+        }
+    
+        p {
+            width: 100%;
+
+            position: absolute;
+            bottom: 0;
+            left: 0;
+
+            font-size: 20px;
+            text-align: center;
+        }
+    }
+}
+
+.landscapes .img-container {
+    background-color: #E07A5F;
+
+    // background: linear-gradient(#E07A5F 0%, #E07A5F 100%);
+    // background-repeat: no-repeat;
+    // background-size: 80% 80%;
+    // background-position: 100% 100%;
+}
+
+.portraits .img-container {
+    background-color: #81B29A;
+
+    // background: linear-gradient(#81B29A 0%, #81B29A 100%);
+    // background-repeat: no-repeat;
+    // background-size: 80% 80%;
+    // background-position: 0 100%;
+}
+
+.birds .img-container {
+    background-color: #F2CC8F;
+
+    // background: linear-gradient(#F2CC8F 0%, #F2CC8F 100%);
+    // background-repeat: no-repeat;
+    // background-size: 80% 80%;
+    // background-position: 100% 100%;
+}

@@ -1,0 +1,27 @@
+header {
+    padding: 75px 20% 5% 20%;
+
+    position: relative;
+    box-sizing: border-box;
+
+    @media (max-width: 800px) {
+        padding: 75px 5% 5% 5%;
+        
+        h1 { font-size: 60px; }
+    }
+}
+
+article {
+    width: 100%;
+
+    box-sizing: border-box;
+    
+    background-color: $off-white;
+
+    h1 {
+        font-size: 70px;
+        @media (max-width: 800px) {
+            font-size: 40px;
+        }
+    }
+}
